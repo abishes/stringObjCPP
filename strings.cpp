@@ -9,7 +9,6 @@ String::String(){			//default constructor string
 
 String::String(const char* str){	// for constructor for char* argument 
 	length = strlen(str);
-	delete[] str_buffer;
 	str_buffer = new char[length + 1]; // since, last char is null
 	memcpy(str_buffer, str, length);
 	str_buffer[length] = '\0';	// adding null char at last
@@ -20,6 +19,10 @@ String::String(const String& another_str){	//(copy constructor) to copy strings,
 	delete[] str_buffer;
 	str_buffer = new char[length + 1];
 	memcpy(str_buffer, another_str.str_buffer, length + 1);
+}
+
+String::~String(){
+	delete[] str_buffer;
 }
 
 int String::len(){
@@ -58,6 +61,7 @@ void String::pop(){		// delets last element
 	str_buffer[length] = '\0';
 }
 
+//operators overloading
 char& String::operator [](const int& charNumber){	// for edithing (n-1)th element os string
 	return str_buffer[charNumber];
 }
@@ -67,6 +71,13 @@ void String::operator =(const String& another_str){ //overloading = operator
 	str_buffer = new char[length + 1];
 	memcpy(str_buffer, another_str.str_buffer, length + 1);
 }
+void String::operator =(const char* str){
+	length = strlen(str);
+	delete[] str_buffer;
+	str_buffer = new char[length + 1]; // since, last char is null
+	memcpy(str_buffer, str, length);
+	str_buffer[length] = '\0';
+}
 
 String String::operator +(const String& another_str){ // overloading + operator
 	String temp;
@@ -75,6 +86,16 @@ String String::operator +(const String& another_str){ // overloading + operator
 	strcpy(temp.str_buffer, str_buffer);
 	strcat(temp.str_buffer, another_str.str_buffer);
 	return temp;
+}
+
+void String::operator +=(const String& another_str){
+	char temp[length + 1];
+	strcpy(temp, str_buffer);
+	length += another_str.length +1;
+	delete[] str_buffer;
+	str_buffer = new char[length];
+	strcpy(str_buffer, temp);
+	strcat(str_buffer, another_str.str_buffer);
 }
 
 bool String::operator ==(const String& another_str){
@@ -103,10 +124,6 @@ bool String::operator <(const String& another_str){
 		return 1;
 	else
 		return 0;
-}
-
-String::~String(){
-	delete[] str_buffer;
 }
 
 std::ostream& operator <<(std::ostream& out, String& str){ //for displaying in console

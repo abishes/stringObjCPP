@@ -19,12 +19,16 @@ public:
 	void push(char ch);
 
 	void pop();
-
+	//operators overloading
 	char& operator [](const int& charNumber);
 
 	void operator =(const String& another_str);
 
+	void operator =(const char* another_str);
+
 	String operator +(const String& another_str);
+
+	void operator +=(const String& another_str);
 
 	bool operator ==(const String& another_str);
 

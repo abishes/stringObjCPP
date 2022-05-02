@@ -22,5 +22,9 @@ int main(){
 	String str5;
 	std::cout<<"Write a string\n";
 	std::cin>>str5;
-	std::cout<<str5<<" ||and sizelength is"<<str5.len()<<std::endl;
+	std::cout<<str5<<std::endl;
+	str5 += str3;
+	std::cout<<str5<<std::endl;
+	str5 = "Hello";
+	std::cout<<str5<<std::endl;
 }
