@@ -19,4 +19,8 @@ int main(){
 	str3.pop();
 	str3.pop();
 	std::cout << str3	<<std::endl;
+	String str5;
+	std::cout<<"Write a string\n";
+	std::cin>>str5;
+	std::cout<<str5<<" ||and sizelength is"<<str5.len()<<std::endl;
 }
