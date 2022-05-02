@@ -1,7 +1,7 @@
 #include <iostream>
 #include <cstring>
-#ifndef _STRINGS_
-#define _STRINGS_
+#ifndef _strings_
+#define _strings_
 class String{
 	char* str_buffer;
 	unsigned int length;
@@ -14,6 +14,7 @@ public:
 
 	String(const char* str){	// for constructor for char* argument 
 		length = strlen(str);
+		delete[] str_buffer;
 		str_buffer = new char[length + 1]; // since, last char is null
 		memcpy(str_buffer, str, length);
 		str_buffer[length] = '\0';	// adding null char at last
@@ -21,6 +22,7 @@ public:
 
 	String(const String& another_str){	//(copy constructor) to copy strings, else would have called destructor multiple times
 		length = another_str.length;
+		delete[] str_buffer;
 		str_buffer = new char[length + 1];
 		memcpy(str_buffer, another_str.str_buffer, length + 1);
 	}
@@ -42,6 +44,7 @@ public:
 		tempStr[length] = ch;
 		tempStr[length + 1] = '\0';
 		length ++;
+		delete[] str_buffer;
 		str_buffer = new char[length + 1];
 		strcpy(str_buffer, tempStr);
 	}
@@ -50,6 +53,7 @@ public:
 		strcpy(tempStr, str_buffer);
 		
 		length --;
+		delete[] str_buffer;
 		str_buffer = new char[length + 1];
 		for(int i = 0; i < length; i++){
 			str_buffer[i] = tempStr[i];
@@ -61,6 +65,7 @@ public:
 	}
 	void operator =(const String& another_str){ //overloading = operator
 		length = another_str.length;
+		delete[] str_buffer;
 		str_buffer = new char[length + 1];
 		memcpy(str_buffer, another_str.str_buffer, length + 1);
 	}
