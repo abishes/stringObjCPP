@@ -61,6 +61,10 @@ void String::pop(){		// delets last element
 	str_buffer[length] = '\0';
 }
 
+char String::at(int index){ //returns nth element of string
+	return operator[](index - 1);
+}
+
 //operators overloading
 char& String::operator [](const int& charNumber){	// for edithing (n-1)th element os string
 	return str_buffer[charNumber];

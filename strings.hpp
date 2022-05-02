@@ -19,6 +19,8 @@ public:
 	void push(char ch);
 
 	void pop();
+
+	char at(int);
 	//operators overloading
 	char& operator [](const int& charNumber);
 

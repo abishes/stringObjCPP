@@ -27,4 +27,5 @@ int main(){
 	std::cout<<str5<<std::endl;
 	str5 = "Hello";
 	std::cout<<str5<<std::endl;
+	std::cout<<"2nd element of str5 is :"<<str5.at(2)<<std::endl;
 }
